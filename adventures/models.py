@@ -13,3 +13,17 @@ class Adventure(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class SummarySentence(models.Model):
+    description = models.TextField(blank=False, null=False)
+    adventure = models.ForeignKey(Adventure, on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+
+class SummaryParagraph(models.Model):
+    description = models.TextField(blank=False, null=False)
+    adventure = models.ForeignKey(Adventure, on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
