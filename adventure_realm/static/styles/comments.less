@@ -1,0 +1,29 @@
+@import (reference) "./includes/_colors";
+@import (reference) "./includes/_measurements";
+
+@user_avatar_width: 50px;
+
+.comments {
+    #id_honeypot {
+        display: none;
+    }
+}
+
+.comments__comment-list {
+    margin-top: @margin-default;
+    padding-top: @padding-default;
+    padding-bottom: @padding-default;
+    border-top: @border-width-extra-small solid @color-gray-light;
+}
+
+.comments__comment {
+    margin-top: @margin-default;
+}
+
+.comments__comment-author-avatar {
+    width: @user_avatar_width;
+}
+
+.comments__comment-content {
+    margin-left: @user_avatar_width + @margin-default;
+}

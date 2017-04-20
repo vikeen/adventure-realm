@@ -1,0 +1,25 @@
+{% load widget_tweaks %}
+
+<form action="" method="post">
+    {% if form.errors %}
+        <div class="card-panel message message--error">Please correct the errors below:</div>
+    {% endif %}
+
+    {% csrf_token %}
+    <div class="input-field">
+        <label for="id_first_name">First Name</label>
+        {% render_field form.first_name %}
+        {{ form.first_name.errors }}
+    </div>
+    <div class="input-field">
+        <label for="id_last_name">Last Name</label>
+        {% render_field form.last_name %}
+        {{ form.last_name.errors }}
+    </div>
+    <div class="input-field">
+        <label for="id_email">Email</label>
+        {% render_field form.email %}
+        {{ form.email.errors }}
+    </div>
+    <button class="btn btn-default" type="submit">Save</button>
+</form>

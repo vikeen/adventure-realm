@@ -1,0 +1,74 @@
+@import (reference) "./includes/_colors";
+@import (reference) "./includes/_measurements";
+@import "./_utilities";
+@import "./theme";
+
+/*
+ *  components
+ */
+@import "./buttons";
+@import "./footer";
+@import "./header";
+@import "./messages";
+
+/*
+ *  apps
+ */
+@import "./users/index";
+@import "./comments";
+
+body {
+    display: flex;
+    height: 100vh;
+    min-height: 500px;
+    flex-direction: column;
+    background: @color-gray-light;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+main.container {
+    margin-top: 50px;
+}
+
+#home {
+    .headline-container {
+        height: 100%;
+        padding: 2rem 1rem;
+        background: rgba(0, 0, 0, 0.8);
+        color: @color-ui-inverse;
+    }
+
+    .meet-the-product {
+        margin-top: 4rem;
+    }
+
+    .section {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+}
+
+form {
+    .errors, .errorlist {
+        color: @color-danger;
+        padding: 0 @padding-large @padding-large;
+        margin-top: -@margin-default;
+    }
+}
+
+nav {
+    background-color: @color-primary !important;
+}
+
+.collection {
+    footer {
+        margin-top: @margin-default;
+    }
+}
+
+.content-block {
+    margin-top: @margin-default;
+}

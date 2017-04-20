@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+    <form class="form-horizontal" action="" method="post">
+        {% if form.errors %}
+            <div class="alert alert-danger">Please correct the errors below:</div>
+        {% endif %}
+
+        {% csrf_token %}
+        <div class="form-group">
+            <div class="col-xs-12">
+                <label for="id_name">Name</label>
+                {% render_field form.name class+="form-control" %}
+                {{ form.name.errors }}
+            </div>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Save</button>
+    </form>
+{% endblock %}

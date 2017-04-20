@@ -1,0 +1,9 @@
+<nav>
+    <div class="nav-wrapper">
+        <ul class="left">
+            <li class="{% if active_link == 'overview' %}active{% endif %}">
+                <a href="{% url 'users:detail' view_user.username %}">Overview</a>
+            </li>
+        </ul>
+    </div>
+</nav>

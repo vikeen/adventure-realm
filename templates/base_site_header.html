@@ -1,0 +1,64 @@
+{% load avatar_image %}
+{% load notifications_tags %}
+
+<header class="site-header">
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'index' %}">Adventure Realm</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="{% url 'adventures:index' %}">Adventures</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if user.id %}
+                        <li>
+                            <a href="{% url 'adventures:create' %}">Create Adventure</a>
+                        </li>
+                        <li>
+                            {% notifications_unread as unread_count %}
+                            {% if  unread_count %}
+                                <a href="{% url 'notifications:unread' %}">
+                                    <span class="badge">{unread_count} messages</span>
+                                </a>
+                            {% else %}
+                                <a href="{% url 'notifications:all' %}">
+                                    messages
+                                </a>
+                            {% endif %}
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true" aria-expanded="false">
+                                <span class="thumbnail"
+                                      style="margin-bottom: 0;position: relative;top: 5px;margin-top: -10px;">
+                                    {% avatar_image user size=25 %}
+                                </span>
+                            </a>
+
+                            <ul class="dropdown-menu">
+                                <li><a href="{% url 'accounts:edit' %}">Account Settings</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="{% url 'accounts:logout' %}">Log Out</a></li>
+                            </ul>
+                        </li>
+                    {% else %}
+                        {% include 'base_unauthenticated_links.html' %}
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

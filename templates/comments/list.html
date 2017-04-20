@@ -1,0 +1,17 @@
+{% load avatar_image %}
+
+<section class="comments__comment-list">
+    {% for comment in comment_list %}
+        <article class="comments__comment clearfix" id="c{{ comment.id }}">
+            <a href="{% url 'users:detail' comment.user.username %}" class="comments__comment-author-avatar left"
+               title="{{ comment.user.username }}">
+                {% avatar_image comment.user size=50 %}
+            </a>
+            <div class="comments__comment-content">
+                <a href="{% url 'users:detail' comment.user.username %}">{{ comment.user.username }}</a>
+                <small>{{ comment.submit_date | timesince }}</small>
+                <p>{{ comment.comment }}</p>
+            </div>
+        </article>
+    {% endfor %}
+</section>

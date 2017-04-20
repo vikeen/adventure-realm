@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ view_user.username }} | Overview{% endblock %}
+
+{% block content %}
+    <div class="user-profile row">
+        <div class="col s3">
+            {% include 'users/user_detail_sidebar.html' %}
+        </div>
+        <div class="col s9">
+            {% include 'users/user_detail_navigation.html' with active_link='overview' %}
+        </div>
+    </div>
+{% endblock %}

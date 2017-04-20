@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+# {% load widget_tweaks %}
+
+{% block title %}Sign up{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">Create an account</span>
+            {% if form.errors %}
+                <div class="card-panel message message--error">Please correct the errors
+                    below: {{ form.non_field_errors }}</div>
+            {% endif %}
+            <form method="post" action="">
+                {% csrf_token %}
+                <div class="input-field">
+                    <label for="id_username">Username</label>
+                    {% render_field form.username %}
+                    {{ form.username.errors }}
+                </div>
+                <div class="input-field">
+                    <label for="id_email">Email</label>
+                    {% render_field form.email %}
+                    {{ form.email.errors }}
+                </div>
+                <div class="input-field">
+                    <label for="id_password1">Password</label>
+                    {% render_field form.password1 %}
+                    {{ form.password1.errors }}
+                </div>
+                <div class="input-field">
+                    <label for="id_password2">Confirm Password</label>
+                    {% render_field form.password2 %}
+                    {{ form.password2.errors }}
+                </div>
+                <button class="btn btn-default" type="submit">Register &rarr;</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

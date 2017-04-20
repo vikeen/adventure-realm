@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% load widget_tweaks %}
+
+{% block title %}Adventures{% endblock %}
+
+{% block content %}
+    <h1 class="page-header">Adventures</h1>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="media-list">
+                {% for adventure in adventure_list %}
+                    <div class="media">
+                        <div class="media-left media-middle">
+                            <a href="#">
+                                <img class="media-object" width="150px"
+                                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkmTNki_2SEoNJlt1ZcvqGEHHnsTtaaAdJSD_u5Kl3-Xibn3r3">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">{{ adventure.name }}</h4>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

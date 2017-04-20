@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load avatar_image %}
+{% load widget_tweaks %}
+
+{% block title %}{{ user.username }} | Profile{% endblock %}
+
+{% block content %}
+    {% include 'accounts/navigation.html' with active_link='profile' %}
+    <div class="card-panel">
+        <div class="row">
+            <div class="col m6 s12">
+                {% include 'accounts/profile_form.html' %}
+            </div>
+            <div class="col m6 s12">
+                {% avatar_image user size=200 %}
+{#                <form action="{% url 'accounts:avatar_upload' %}" method="post" enctype="multipart/form-data">#}
+{#                    {% csrf_token %}#}
+{#                    <div class="file-field input-field">#}
+{#                        <div class="btn btn-default">#}
+{#                            <i class="material-icons left">add_a_photo</i>#}
+{#                            <span>Image</span>#}
+{#                            <input type="file" id="id_avatar" name="avatar" accept=".png, .jpg, .jpeg, .gif" required/>#}
+{#                        </div>#}
+{#                        <div class="file-path-wrapper">#}
+{#                            <input class="file-path validate" type="text"/>#}
+{#                        </div>#}
+{#                        {{ user_profile_form.avatar.errors }}#}
+{#                    </div>#}
+{#                    <button class="btn btn-default">Upload</button>#}
+{#                </form>#}
+            </div>
+        </div>
+    </div>
+{% endblock %}
