@@ -36,10 +36,8 @@ class AdventureCreate(generic.CreateView):
 class AdventureUpdate(HasAccessToAdventure,
                       generic.UpdateView):
     model = Adventure
+    pk_url_kwarg = 'adventure_pk'
     fields = ['name']
-
-    def get_object(self, queryset=None):
-        return Adventure.objects.get(pk=self.kwargs['adventure_pk'])
 
     def get_success_url(self):
         messages.success(self.request, 'Adventure updated')
@@ -69,10 +67,8 @@ class SummarySentenceUpdate(HasAccessToAdventure,
                             AdventureMixin,
                             generic.UpdateView):
     model = SummarySentence
+    pk_url_kwarg = 'summary_sentence_pk'
     fields = ['text']
-
-    def get_object(self, queryset=None):
-        return SummarySentence.objects.get(pk=self.kwargs['summary_sentence_pk'])
 
     def form_valid(self, form):
         form.instance.adventure = Adventure.objects.get(pk=self.kwargs['adventure_pk'])
@@ -106,10 +102,8 @@ class SummaryParagraphUpdate(HasAccessToAdventure,
                              AdventureMixin,
                              generic.UpdateView):
     model = SummaryParagraph
+    pk_url_kwarg = 'summary_paragraph_pk'
     fields = ['text']
-
-    def get_object(self, queryset=None):
-        return SummaryParagraph.objects.get(pk=self.kwargs['summary_paragraph_pk'])
 
     def form_valid(self, form):
         form.instance.adventure = Adventure.objects.get(pk=self.kwargs['adventure_pk'])
@@ -143,10 +137,8 @@ class CharacterOutlineUpdate(HasAccessToAdventure,
                              AdventureMixin,
                              generic.UpdateView):
     model = CharacterOutline
+    pk_url_kwarg = 'character_outline_pk'
     fields = ['name', 'image_url', 'description', 'background', 'personality', 'motive', 'conflict']
-
-    def get_object(self, queryset=None):
-        return CharacterOutline.objects.get(pk=self.kwargs['character_outline_pk'])
 
     def form_valid(self, form):
         form.instance.adventure = Adventure.objects.get(pk=self.kwargs['adventure_pk'])
