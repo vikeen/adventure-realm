@@ -62,20 +62,20 @@
                     <a class="btn btn-primary" href="{% url 'adventures:character_outline_create' adventure.pk %}">Create</a>
                 </div>
                 <div class="panel-body">
-                    <div class="media-list">
+                    <div class="row">
                         {% for character_outline in adventure.characteroutline_set.all %}
-                            <div class="media">
-                                <div class="media-left">
-                                    <img class="media-object" width="100" src="{{ character_outline.image_url }}"
+                            <div class="col-sm-6 col-md-4">
+                                <div class="thumbnail">
+                                    <div style="height: 250px; overflow: hidden">
+                                        <img class="img-responsive" src="{{ character_outline.image_url }}"
                                          alt="{{ character_outline.name }}">
-                                </div>
-                                <div class="media-body">
-                                    <h4 class="media-heading">
-                                        <a href="{% url 'adventures:character_outline_update' adventure.pk character_outline.pk %}">
-                                            {{ character_outline.name }}
-                                        </a>
-                                    </h4>
-                                    <p>{{ character_outline.description }}</p>
+                                    </div>
+                                    <div class="caption">
+                                        <h3>{{ character_outline.name }}</h3>
+                                        <p>{{ character_outline.description|truncatechars:100 }}</p>
+                                        <a href="{% url 'adventures:character_outline_update' adventure.pk character_outline.pk %}"
+                                           class="btn btn-primary" role="button">Edit</a>
+                                    </div>
                                 </div>
                             </div>
                         {% endfor %}
