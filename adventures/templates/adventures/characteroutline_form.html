@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+    <ol class="breadcrumb">
+        <li><a href="{% url 'adventures:update' adventure.pk %}">{{ adventure.name }}</a></li>
+        <li class="active">Character Outline</li>
+    </ol>
+
+    <form class="form-horizontal" action="" method="post">
+        {% if form.errors %}
+            <div class="alert alert-danger">Please correct the errors below:</div>
+        {% endif %}
+
+        {% csrf_token %}
+        <div class="form-group">
+            <div class="col-xs-12 col-sm-6">
+                <label for="id_name">Name</label>
+                {% render_field form.name class+="form-control" %}
+                {{ form.name.errors }}
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                <label for="id_name">Image Url</label>
+                {% render_field form.image_url class+="form-control" %}
+                {{ form.namimage_url.errors }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-xs-12">
+                <label for="id_description">Description</label>
+                {% render_field form.description class+="form-control" %}
+                {{ form.description.errors }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-xs-12">
+                <label for="id_background">Background</label>
+                {% render_field form.background class+="form-control" %}
+                {{ form.background.errors }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-xs-12">
+                <label for="id_personality">Personality</label>
+                {% render_field form.personality class+="form-control" %}
+                {{ form.personality.errors }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-xs-12">
+                <label for="id_motive">Motive</label>
+                {% render_field form.motive class+="form-control" %}
+                {{ form.motive.errors }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-xs-12">
+                <label for="id_conflict">Conflict</label>
+                {% render_field form.conflict class+="form-control" %}
+                {{ form.conflict.errors }}
+            </div>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Save</button>
+    </form>
+{% endblock %}

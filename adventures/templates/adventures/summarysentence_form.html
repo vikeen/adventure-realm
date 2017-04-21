@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+    <ol class="breadcrumb">
+        <li><a href="{% url 'adventures:update' adventure.pk %}">{{ adventure.name }}</a></li>
+        <li class="active">Summary Sentence</li>
+    </ol>
+
+    <form class="form-horizontal" action="" method="post">
+        {% if form.errors %}
+            <div class="alert alert-danger">Please correct the errors below:</div>
+        {% endif %}
+
+        {% csrf_token %}
+        <div class="form-group">
+            <div class="col-xs-12">
+                <label for="id_text">One Sentence Summary</label>
+                {% render_field form.text class+="form-control" %}
+                {{ form.text.errors }}
+            </div>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Save</button>
+    </form>
+{% endblock %}

@@ -16,7 +16,72 @@
                 {{ form.name.errors }}
             </div>
         </div>
-
         <button class="btn btn-primary" type="submit">Save</button>
     </form>
+
+    {% if adventure %}
+        <div class="adventure-story-steps">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Summary Sentence
+
+                    {% if adventure.summarysentence %}
+                        <a class="btn btn-primary"
+                           href="{% url 'adventures:summary_sentence_update' adventure.pk adventure.summarysentence.pk %}">Edit</a>
+                    {% else %}
+                        <a class="btn btn-primary"
+                           href="{% url 'adventures:summary_sentence_create' adventure.pk %}">Create</a>
+                    {% endif %}
+                </div>
+                <div class="panel-body">
+                    <p>{{ adventure.summarysentence }}</p>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Summary Paragraph
+
+                    {% if adventure.summaryparagraph %}
+                        <a class="btn btn-primary"
+                           href="{% url 'adventures:summary_paragraph_update' adventure.pk adventure.summaryparagraph.pk %}">Edit</a>
+                    {% else %}
+                        <a class="btn btn-primary"
+                           href="{% url 'adventures:summary_paragraph_create' adventure.pk %}">Create</a>
+                    {% endif %}
+                </div>
+                <div class="panel-body">
+                    <p>{{ adventure.summaryparagraph }}</p>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Character Outlines
+                    <a class="btn btn-primary" href="{% url 'adventures:character_outline_create' adventure.pk %}">Create</a>
+                </div>
+                <div class="panel-body">
+                    <div class="media-list">
+                        {% for character_outline in adventure.characteroutline_set.all %}
+                            <div class="media">
+                                <div class="media-left">
+                                    <img class="media-object" width="100" src="{{ character_outline.image_url }}"
+                                         alt="{{ character_outline.name }}">
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading">
+                                        <a href="{% url 'adventures:character_outline_update' adventure.pk character_outline.pk %}">
+                                            {{ character_outline.name }}
+                                        </a>
+                                    </h4>
+                                    <p>{{ character_outline.description }}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}

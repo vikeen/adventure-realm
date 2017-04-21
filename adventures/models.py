@@ -16,14 +16,36 @@ class Adventure(models.Model):
 
 
 class SummarySentence(models.Model):
-    description = models.TextField(blank=False, null=False)
-    adventure = models.ForeignKey(Adventure, on_delete=models.CASCADE)
+    text = models.TextField(blank=False, null=False)
+    adventure = models.OneToOneField(Adventure, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.text
 
 
 class SummaryParagraph(models.Model):
-    description = models.TextField(blank=False, null=False)
+    text = models.TextField(blank=False, null=False)
+    adventure = models.OneToOneField(Adventure, on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.text
+
+
+class CharacterOutline(models.Model):
+    name = models.CharField(max_length=100, blank=False, null=False)
     adventure = models.ForeignKey(Adventure, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    description = models.TextField(blank=False, null=False)
+    background = models.TextField(blank=False, null=False)
+    personality = models.TextField(blank=False, null=False)
+    motive = models.TextField(blank=False, null=False)
+    conflict = models.TextField(blank=False, null=False)
+    image_url = models.CharField(max_length=1000, null=True, blank=True)
+
+    def __str__(self):
+        return self.name

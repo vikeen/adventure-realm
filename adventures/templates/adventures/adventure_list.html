@@ -21,6 +21,8 @@
                             <h4 class="media-heading">
                                 <a href="{% url 'adventures:update' adventure.pk %}">{{ adventure.name }}</a>
                             </h4>
+
+                            <p>{{ adventure.summarysentence }}</p>
                         </div>
                     </div>
                 {% endfor %}
